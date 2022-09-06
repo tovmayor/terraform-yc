@@ -36,6 +36,14 @@ provider "yandex" {
   zone      = "ru-central1-b"
 }
 
+resource "yandex_storage_object" "war-bucket" {
+  access_key = "YCAJECaxhWcm6rHMYeehDO2kH"
+  secret_key = "YCPxhl-X6BvNYbA6cSF5Wpr8TlRHxBhkV6lhHz5S"
+  bucket     = "devbucket"
+  key        = "folder"
+  #source     = "<путь_к_файлу>"
+}
+
 resource "yandex_compute_instance" "build" {
   name        = "t-build1"
   hostname    = "t-build1"
