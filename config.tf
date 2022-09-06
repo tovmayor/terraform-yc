@@ -116,7 +116,7 @@ provisioner "remote-exec" {
       "sudo apt-get install -y openjdk-11-jre-headless",
       "sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz",
       "sudo tar xvfz apache-tomcat-9.0.65.tar.gz",
-      "sudo mkdir -p /usr/local/tomcat9 && mv ./apache-tomcat-9.0.65/* /usr/local/tomcat9 && rm apache-tomcat-9.0.65.tar.gz"
+      "sudo mkdir -p /usr/local/tomcat9 && sudo mv ./apache-tomcat-9.0.65/* /usr/local/tomcat9 && sudo rm apache-tomcat-9.0.65.tar.gz"
 
     ]
     connection {
