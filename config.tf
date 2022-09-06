@@ -67,6 +67,10 @@ resource "yandex_storage_bucket" "a1dc8aa6f31a45f83" {
   secret_key = yandex_iam_service_account_static_access_key.sa-static-key.secret_key
   bucket     = "a1dc8aa6f31a45f83"
   max_size   = 200000000
+  anonymous_access_flags {
+    read = true
+    list = false
+  }
 }
 
 resource "yandex_compute_instance" "build" {
