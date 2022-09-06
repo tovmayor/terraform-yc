@@ -41,7 +41,7 @@ resource "yandex_storage_object" "war-bucket" {
   secret_key = "YCPxhl-X6BvNYbA6cSF5Wpr8TlRHxBhkV6lhHz5S"
   bucket     = "devbucket"
   key        = "folder"
-  source     = "../hello-1.0.war"
+  source     = "/home/andrew/hello-1.0.war"
 }
 
 resource "yandex_compute_instance" "build" {
