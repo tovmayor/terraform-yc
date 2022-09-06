@@ -44,12 +44,12 @@ resource "yandex_compute_instance" "build" {
   scheduling_policy {
     preemptible = true
   }
-  core_fraction = 20
   allow_stopping_for_update = true
 
   resources {
     cores  = 4
     memory = 4
+    core_fraction = 20  
   }
 
   boot_disk {
@@ -89,12 +89,12 @@ resource "yandex_compute_instance" "prod" {
   scheduling_policy {
     preemptible = true
   }
-  core_fraction = 20
   allow_stopping_for_update = true
 
   resources {
     cores  = 2
     memory = 2
+    core_fraction = 20
   }
 
   boot_disk {
