@@ -11,38 +11,12 @@ terraform {
   }
 }
 
-#provider "docker" {
-  #Configuration options
-#  host = "unix:///var/run/docker.sock"
-#}
-
-#resource "docker_container" "nginx_cont" {
-#  image = docker_image.nginx.latest
-#    name = "nginx_image"
-#    ports {
-#      internal = 80
-#      external = 80
-#    }
-#}
-
-#resource "docker_image" "nginx" {
-#  name = "nginx:latest"
-#}
-
 provider "yandex" {
   token     = "y0_AgAAAAAKYyQGAATuwQAAAADNneRzsw53q7T1Q2qTJPmxqfz87uq9uBk"
   cloud_id  = "b1g2mjplbcl08o830ovt"
   folder_id = "b1gqgtdu7assr55vqtf2"
   zone      = "ru-central1-b"
 }
-
-# resource "yandex_storage_object" "war-bucket" {    #!!NOT WORKS!!
-#   access_key = "YCAJECaxhWcm6rHMYeehDO2kH"
-#   secret_key = "YCPxhl-X6BvNYbA6cSF5Wpr8TlRHxBhkV6lhHz5S"
-#   bucket     = "devbucket"
-#   key        = "folder"
-#   source     = "/home/andrew/terraform-yc/hello-1.0.war"
-# }
 
 resource "yandex_iam_service_account" "sa" {
   name = "bucket-admin"
@@ -162,11 +136,7 @@ provisioner "remote-exec" {
       "sudo s3fs a1dc8aa6f31a45f83 /mnt/ycb -o passwd_file=$HOME/.passwd-s3fs -o url=http://storage.yandexcloud.net -o use_path_request_style",
       "sudo apt-get install -y openjdk-11-jre-headless",
       "sudo apt-get install -y tomcat9",
-      # "sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz",
-      # "sudo tar xvfz apache-tomcat-9.0.65.tar.gz",
-      # "sudo mkdir -p /usr/local/tomcat9 && sudo mv ./apache-tomcat-9.0.65/* /usr/local/tomcat9 && sudo rm apache-tomcat-9.0.65.tar.gz",
       "sudo cp /mnt/ycb/hello-1.0.war /var/lib/tomcat9/webapps/"
-      # "sudo /usr/local/tomcat9/bin/catalina.sh run"
     ]
     connection {
       type = "ssh"
