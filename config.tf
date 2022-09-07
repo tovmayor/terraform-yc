@@ -105,9 +105,13 @@ network_interface {
   }
 provisioner "remote-exec" {
     inline = [
-      "sudo apt-get update -y && sudo apt-get install -y maven git",
+      "sudo apt-get update -y && sudo apt-get install -y maven git && sudo apt-get install -y s3fs",
+      "sudo echo YCAJECaxhWcm6rHMYeehDO2kH:YCPxhl-X6BvNYbA6cSF5Wpr8TlRHxBhkV6lhHz5S > ~/.passwd-s3fs && sudo chmod 600  ~/.passwd-s3fs",
+      "sudo mkdir /mnt/ycb",
+      "sudo s3fs a1dc8aa6f31a45f83 /mnt/ycb -o passwd_file=$HOME/.passwd-s3fs -o url=http://storage.yandexcloud.net -o use_path_request_style",
       "sudo git clone https://github.com/tovmayor/myboxfuse.git",
       "sudo mvn -f ./myboxfuse package", 
+      "sudo cp /home/ubuntu/myboxfuse/target/hello-1.0.war /mnt/ycb/"
     ]
     connection {
       type = "ssh"
@@ -150,10 +154,16 @@ network_interface {
   }
 provisioner "remote-exec" {
     inline = [
-      "sudo apt-get install -y openjdk-11-jre-headless",
+      "sudo apt-get update -y && apt-get install -y openjdk-11-jre-headless && sudo apt-get install -y s3fs",
+      "sudo echo YCAJECaxhWcm6rHMYeehDO2kH:YCPxhl-X6BvNYbA6cSF5Wpr8TlRHxBhkV6lhHz5S > ~/.passwd-s3fs && sudo chmod 600  ~/.passwd-s3fs",
+      "sudo mkdir /mnt/ycb",
+      "sudo s3fs a1dc8aa6f31a45f83 /mnt/ycb -o passwd_file=$HOME/.passwd-s3fs -o url=http://storage.yandexcloud.net -o use_path_request_style",
       "sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz",
       "sudo tar xvfz apache-tomcat-9.0.65.tar.gz",
-      "sudo mkdir -p /usr/local/tomcat9 && sudo mv ./apache-tomcat-9.0.65/* /usr/local/tomcat9 && sudo rm apache-tomcat-9.0.65.tar.gz"
+      "sudo mkdir -p /usr/local/tomcat9 && sudo mv ./apache-tomcat-9.0.65/* /usr/local/tomcat9 && sudo rm apache-tomcat-9.0.65.tar.gz",
+      "sudo cp /mnt/ycb/hello-1.0.war /usr/local/tomcat9/webapps",
+      "sudo /usr/local/tomcat9/bin/catalina.sh run"
+
 
     ]
     connection {
