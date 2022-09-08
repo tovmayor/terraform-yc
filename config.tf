@@ -11,8 +11,12 @@ terraform {
   }
 }
 
+# variable "yc_token" {
+#   type        = string
+# }  
+
 provider "yandex" {
-  token     = "y0_AgAAAAAKYyQGAATuwQAAAADNneRzsw53q7T1Q2qTJPmxqfz87uq9uBk"
+  token     = var.yc_token
   cloud_id  = "b1g2mjplbcl08o830ovt"
   folder_id = "b1gqgtdu7assr55vqtf2"
   zone      = "ru-central1-b"
