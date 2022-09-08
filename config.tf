@@ -14,11 +14,17 @@ terraform {
 variable "yc_token" {
   type        = string
 }  
+variable "yc_cloud_id" {
+  type        = string
+}  
+variable "yc_folder_id" {
+  type        = string
+}  
 
 provider "yandex" {
   token     = var.yc_token
-  cloud_id  = "b1g2mjplbcl08o830ovt"
-  folder_id = "b1gqgtdu7assr55vqtf2"
+  cloud_id  = var.yc_cloud_id
+  folder_id = var.yc_folder_id 
   zone      = "ru-central1-b"
 }
 
