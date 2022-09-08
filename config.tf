@@ -18,6 +18,9 @@ provider "yandex" {
   zone      = "ru-central1-b"
 }
 
+variable "yc_token" {
+  type        = string
+}  
 resource "yandex_iam_service_account" "sa" {
   name = "bucket-admin"
 }
