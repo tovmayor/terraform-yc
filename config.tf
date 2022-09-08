@@ -11,9 +11,9 @@ terraform {
   }
 }
 
-# variable "yc_token" {
-#   type        = string
-# }  
+variable "yc_token" {
+  type        = string
+}  
 
 provider "yandex" {
   token     = var.yc_token
