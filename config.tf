@@ -11,6 +11,10 @@ terraform {
   }
 }
 
+variable "yc_token" {
+  type        = string
+}  
+
 provider "yandex" {
   token     = vars.yc_token
   cloud_id  = "b1g2mjplbcl08o830ovt"
@@ -18,9 +22,6 @@ provider "yandex" {
   zone      = "ru-central1-b"
 }
 
-variable "yc_token" {
-  type        = string
-}  
 resource "yandex_iam_service_account" "sa" {
   name = "bucket-admin"
 }
